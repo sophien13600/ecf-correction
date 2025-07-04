@@ -1,6 +1,7 @@
 <?php
 
 include_once __DIR__ .  "/../repositories/livre_repository.php";
+include_once __DIR__ .  "/../repositories/auteur_repository.php";
  // affiche les 10 premiers livres
 function cartes_all_livres($n = 10)
 {
@@ -56,3 +57,13 @@ function admin_cards($livres)
     return $result;
 }
 
+
+function auteurs_select() {
+    $auteurs = find_all_auteurs();
+    $resultat = "<select name='auteur' id=auteur>";
+    foreach ($auteurs as $auteur) {
+        $resultat .= "<option value='$auteur[0]'>$auteur[1]</option>";
+    }
+    $resultat .= "</select>";
+    return $resultat;
+}
