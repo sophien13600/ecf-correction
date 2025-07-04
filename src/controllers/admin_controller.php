@@ -15,8 +15,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['email'] = $resultat[3];
         $_SESSION['idAdmin'] = $resultat[0];
         header("location: ../../views/gestion_livres.php");
+        die();
     } else {
         // Identifiants incorrects
         header("location: ../../views/connexion.php");
+        die();
     }
+} elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
+    session_unset();
+    session_destroy();
+        header("location: ../../views/connexion.php");
+    die();
 }

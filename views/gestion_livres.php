@@ -2,6 +2,10 @@
 include __DIR__ . "/../src/services/livre_service.php";
 
 session_start();
+if (!isset($_SESSION['idAdmin'])) {
+    header("location: ./connexion.php");
+    die();
+}
 $id = $_SESSION['idAdmin'];
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
@@ -22,7 +26,7 @@ $auteurs = auteurs_select();
 
 <body>
     <h1 class="text-center text-primary my-5">Gestion de livres</h1>
-    <h2 class="text-center text-primary my-5">Bonjour <?= "$prenom $nom" ?></h2>
+    <h2 class="text-center text-primary my-5">Bonjour <?= "$prenom $nom" ?>, <a href="../src/controllers/admin_controller.php">Se déconnecter</a></h2>
     <h2 class="text-center text-primary my-5">Ajouter un nouveau livre</h2>
     <form action="../src/controllers/livre_controller.php" method="POST">
         <div class="mb-3 row">

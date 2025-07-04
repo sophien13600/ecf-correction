@@ -10,15 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET['id']) and $_GET['op'] =
     die();
 } elseif ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET['id']) and $_GET['op'] == "mod") {
     $id = $_GET['id'];
+
+    // echo $id_admin . " " . $livre[4];
+    // var_dump($id_admin != $livre[4]);
+
     header("location: ../../views/modifier_livre.php?id=$id");
     die();
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST' and str_contains($_SERVER["HTTP_REFERER"], "modifier_livre")) {
     // Modifier un livre existant
+
     update($_POST['id'], $_POST['titre'], $_POST['categorie'], $_POST['annee']);
     header("location: ../../views/gestion_livres.php");
     die();
-}
- elseif ($_SERVER['REQUEST_METHOD'] == 'POST' and str_contains($_SERVER["HTTP_REFERER"], "gestion_livre")) {
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' and str_contains($_SERVER["HTTP_REFERER"], "gestion_livre")) {
     // ajouter un nouveau livre
     $id_admin =  $_SESSION["idAdmin"];
     save($_POST['titre'], $_POST['categorie'], $_POST['annee'], $_POST['auteur'], $id_admin);
